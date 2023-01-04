@@ -4,7 +4,6 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
 const dotenv = require('dotenv');
-// import config IDs
 dotenv.config();
 
 const TOKEN = process.env.TOKEN;

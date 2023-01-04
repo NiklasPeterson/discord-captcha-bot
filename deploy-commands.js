@@ -7,11 +7,10 @@ dotenv.config();
 
 const TOKEN = process.env.TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
-const GUILD_ID = process.env.GUILD_ID;
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('-local.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('-global.js'));
 
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
@@ -29,7 +28,7 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
-			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+			Routes.applicationCommands(CLIENT_ID),
 			{ body: commands },
 		);
 
